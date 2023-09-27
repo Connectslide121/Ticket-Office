@@ -1,4 +1,4 @@
-![alt text](https://github.com/Connectslide121/Ticket-Office/blob/master/Connect_banner.png)
+![alt text](https://github.com/Connectslide121/Ticket-Office/blob/master/Connect_banner_github.png)
 
 # Ticket-Office
 Lexicon - .NET course - Week 3 assignment
