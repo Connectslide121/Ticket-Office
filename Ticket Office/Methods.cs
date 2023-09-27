@@ -14,12 +14,19 @@ namespace Ticket_Office
         {
             bool seated = place == "seated";
 
+            int childSeated = 50;
+            int childStanding = 25;
+            int retiredSeated = 100;
+            int retiredStanding = 60;
+            int restSeated = 170;
+            int restStanding = 110;
+
             if (age <= 11)
             {
                 switch (seated)
                 {
-                    case true: return 50;
-                    case false: return 25;
+                    case true: return childSeated;
+                    case false: return childStanding;
                 }
 
             }
@@ -28,8 +35,8 @@ namespace Ticket_Office
             {
                 switch (seated)
                 {
-                    case true: return 100;
-                    case false: return 60;
+                    case true: return retiredSeated;
+                    case false: return retiredStanding;
                 }
             }
 
@@ -37,8 +44,8 @@ namespace Ticket_Office
             {
                 switch (seated)
                 {
-                    case true: return 170;
-                    case false: return 110;
+                    case true: return restSeated;
+                    case false: return restStanding;
                 }
             }
         }
