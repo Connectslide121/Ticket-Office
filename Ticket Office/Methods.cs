@@ -8,6 +8,8 @@ namespace Ticket_Office
 {
     internal class Methods
     {
+        //************************************************************************************************************************************************************//
+
         public static int PriceSetter(int age, string place)
         {
             bool seated = place == "seated";
@@ -41,12 +43,15 @@ namespace Ticket_Office
             }
         }
 
+        //************************************************************************************************************************************************************//
 
         public static decimal TaxCalculator(int price)
         {
             decimal tax = (decimal)((1 - 1 / 1.06) * price);
             return tax; 
         }
+
+        //************************************************************************************************************************************************************//
 
 
         public static int TicketNumberGenerator()
@@ -55,42 +60,55 @@ namespace Ticket_Office
             return random.Next(1, 8001);
         }
 
+        //************************************************************************************************************************************************************//
 
-        public static string ToLower(string input)
+        public static int AskAge()
         {
-            return input.ToLower();
-        }
+            int userAge;
 
-        public static string AntiCheat()
-        {
-            bool correct = false;
-            return "Hallo"; //*****************************REMOVE*********************
-            while (!correct)
+            do
             {
                 string userInput = Console.ReadLine();
-                string userInputLower = Methods.ToLower(userInput);
 
-                if (userInputLower == "seated")
+                if (int.TryParse(userInput, out userAge))
                 {
-                    correct = true;
-                    Console.WriteLine();
-                    Console.WriteLine("Thank you for your answers!");
-
+                    break;
                 }
-
-                else if (userInputLower == "standing")
-                {
-                    correct = true;
-                    Console.WriteLine();
-                    Console.WriteLine("Thank you for your answers!");
-
-                }
-
                 else
+                {
+                    Console.WriteLine("Please, I need your age to be a number :)");
+                }
+
+            }while (true);
+
+            return userAge;
+        }
+
+        //************************************************************************************************************************************************************//
+
+
+        public static string AskPlace()
+        {
+            string userPlace;
+
+            do
+            {
+                userPlace = Console.ReadLine().ToLower();
+
+                if (userPlace != "seated" && userPlace != "standing")
                 {
                     Console.WriteLine("Sorry, I didn't understand. Do you want a standing or seated ticket?");
                 }
+                
             }
+
+            while (userPlace != "seated" && userPlace != "standing");
+
+            return userPlace;
+            
         }
+
+        //************************************************************************************************************************************************************//
+
     }
 }

@@ -6,18 +6,22 @@ Console.WriteLine("Welcome to The Ticket Office!");
 Console.WriteLine();
 Console.WriteLine("How old are you?");
 
-int age = Convert.ToInt32 (Console.ReadLine());
+int userAge = Methods.AskAge();
 
 Console.WriteLine();
 Console.WriteLine("What type of ticket would you like to purchase? Standing or seated?");
-string place = Console.ReadLine();
-string placeLower = Methods.ToLower (place);
 
-int price = Methods.PriceSetter(age, placeLower);
+string userPlace = Methods.AskPlace();
+
+Console.WriteLine();
+Console.WriteLine("Thank you for your answers!");
+Console.WriteLine();
+
+int price = Methods.PriceSetter(userAge, userPlace);
 decimal tax = Methods.TaxCalculator(price);
 int rng = Methods.TicketNumberGenerator();
 
-Console.WriteLine("Here are the details of your ticket");
+Console.WriteLine("Here are the details of your ticket:");
 Console.WriteLine();
 Console.WriteLine($"Price: \t\t{price} SEK");
 Console.WriteLine($"Taxes: \t\t{tax} SEK");
