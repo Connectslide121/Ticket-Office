@@ -3,7 +3,7 @@
 using Ticket_Office;
 
 
-string placeList = Methods.RandomListGenerator(8000);
+string placeList = Methods.RandomListGenerator(4000);
 
 Console.WriteLine("Welcome to The Ticket Office!");
 Console.WriteLine();
@@ -34,7 +34,7 @@ do
     if (checkAvailability == false)
     {
         Console.WriteLine($"Sorry, the selected ticket number ({placeNumber}) is not available");
-        await Task.Delay(100);
+        await Task.Delay(20);
     }
 
     else

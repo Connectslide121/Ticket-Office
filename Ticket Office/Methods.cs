@@ -144,11 +144,21 @@ namespace Ticket_Office
         {
 
             string placeList = ",";
+            int randomNumber;
+            bool available;
 
             for (int i = 0; i < howManyNumbers; i++)
             {
-                int randomNumber = TicketNumberGenerator();
+                do
+                {
+                    randomNumber = TicketNumberGenerator();
+                    available = CheckPlaceAvailability(placeList, randomNumber);
+
+                }
+                while (available == false);
+
                 placeList += $"{randomNumber},";
+
             }
         
             return placeList ;
