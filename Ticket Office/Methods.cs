@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -104,15 +105,53 @@ namespace Ticket_Office
 
                 if (userPlace != "seated" && userPlace != "standing")
                 {
-                    Console.WriteLine("Sorry, I didn't understand. Do you want a standing or seated ticket?");
+                    Console.WriteLine("Please enter a valid answer. Do you want a standing or seated ticket?");
                 }
-                
-            }
 
-            while (userPlace != "seated" && userPlace != "standing");
+            }while (userPlace != "seated" && userPlace != "standing");
 
             return userPlace;
             
+        }
+
+        //************************************************************************************************************************************************************//
+
+        public static bool CheckPlaceAvailability(string placeList, int placeNumber)
+        {
+            string searchPattern = $",{placeNumber},";
+
+            if (placeList.Contains(searchPattern))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        //************************************************************************************************************************************************************//
+
+        public static string AddPlace(string placeList, int placeNumber)
+        {
+            placeList = $"{placeList}{placeNumber.ToString()},"; 
+            return placeList ;
+        }
+
+        //************************************************************************************************************************************************************//
+
+        public static string RandomListGenerator(int howManyNumbers)
+        {
+
+            string placeList = ",";
+
+            for (int i = 0; i < howManyNumbers; i++)
+            {
+                int randomNumber = TicketNumberGenerator();
+                placeList += $"{randomNumber},";
+            }
+        
+            return placeList ;
         }
 
         //************************************************************************************************************************************************************//
