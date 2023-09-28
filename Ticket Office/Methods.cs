@@ -87,7 +87,8 @@ namespace Ticket_Office
                     Console.WriteLine("Please, I need your age to be a number :)");
                 }
 
-            }while (true);
+            }
+            while (true);
 
             return userAge;
         }
@@ -108,10 +109,10 @@ namespace Ticket_Office
                     Console.WriteLine("Please enter a valid answer. Do you want a standing or seated ticket?");
                 }
 
-            }while (userPlace != "seated" && userPlace != "standing");
+            }
+            while (userPlace != "seated" && userPlace != "standing");
 
             return userPlace;
-            
         }
 
         //************************************************************************************************************************************************************//
@@ -142,7 +143,6 @@ namespace Ticket_Office
 
         public static string RandomListGenerator(int howManyNumbers)
         {
-
             string placeList = ",";
             int randomNumber;
             bool available;
@@ -153,14 +153,11 @@ namespace Ticket_Office
                 {
                     randomNumber = TicketNumberGenerator();
                     available = CheckPlaceAvailability(placeList, randomNumber);
-
                 }
                 while (available == false);
 
                 placeList += $"{randomNumber},";
-
             }
-        
             return placeList ;
         }
 

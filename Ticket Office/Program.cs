@@ -3,7 +3,7 @@
 using Ticket_Office;
 
 
-string placeList = Methods.RandomListGenerator(4000);
+string placeList = Methods.RandomListGenerator(6000);
 
 Console.WriteLine("Welcome to The Ticket Office!");
 Console.WriteLine();
@@ -39,7 +39,7 @@ do
 
     else
     {
-        Console.WriteLine($"Your ticker number is {placeNumber}");
+        Console.WriteLine($"Your ticker number is {placeNumber}!");
     }
 
 }while (checkAvailability == false);
@@ -57,6 +57,7 @@ Console.WriteLine("Press any key if you want to see the list of places that are 
 Console.ReadKey();
 placeList = Methods.AddPlace(placeList, placeNumber);
 string placeListWithoutLastComma = placeList.Substring(0, placeList.Length -1);
+Console.WriteLine();
 Console.WriteLine($"List of unavailable places: {placeListWithoutLastComma.Remove(0, 1)}");
 Console.ReadKey();
 
