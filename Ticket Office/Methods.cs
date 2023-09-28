@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Ticket_Office
 {
-    internal class Methods
+    public class Methods
     {
         //************************************************************************************************************************************************************//
 
         public static int PriceSetter(int age, string place)
         {
-            bool seated = place == "seated";
+            bool seated = place.ToLower() == "seated";
 
             int childSeated = 50;
             int childStanding = 25;
@@ -70,33 +70,51 @@ namespace Ticket_Office
 
         //************************************************************************************************************************************************************//
 
-        public static int AskAge()
+        public static int GetCustomerAge()
         {
-            int userAge;
+            string userInput;
+            int customerAge;
+            bool correctLength;
+            bool isNumber;
 
             do
             {
-                string userInput = Console.ReadLine();
+                userInput = Console.ReadLine();
+                isNumber = true;
+                correctLength = true;
 
-                if (int.TryParse(userInput, out userAge))
+                if (userInput.Length < 1 || userInput.Length > 3)
                 {
-                    break;
+                    Console.WriteLine("Please, insert a number between 0 and 999.");
                 }
                 else
                 {
-                    Console.WriteLine("Please, I need your age to be a number :)");
+                    foreach (char c in userInput)
+                    {
+                        if (char.IsDigit(c))
+                        {
+                            isNumber = false;
+                            correctLength = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please, insert a valid number (no letters).");
+                        }
+                        break;
+                    }
                 }
-
             }
-            while (true);
+            while (correctLength == true && isNumber == true);
 
-            return userAge;
+            customerAge = Convert.ToInt32(userInput);
+
+            return customerAge;
         }
 
         //************************************************************************************************************************************************************//
 
 
-        public static string AskPlace()
+        public static string GetCustomerPlacePreference()
         {
             string userPlace;
 
@@ -112,7 +130,12 @@ namespace Ticket_Office
             }
             while (userPlace != "seated" && userPlace != "standing");
 
-            return userPlace;
+            string userPlaceFirstLetter = userPlace.Remove(1);
+            string userPlaceFirstLetterCapitalized = userPlaceFirstLetter.ToUpper();
+            string userPlaceRest = userPlace.Remove(0, 1);
+            string userPlaceFormatted = userPlaceFirstLetterCapitalized+userPlaceRest;
+
+            return userPlaceFormatted;
         }
 
         //************************************************************************************************************************************************************//

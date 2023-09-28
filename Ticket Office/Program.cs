@@ -3,25 +3,28 @@
 using Ticket_Office;
 
 
-string placeList = Methods.RandomListGenerator(6000);
+string placeList = Methods.RandomListGenerator(7500);
 
 Console.WriteLine("Welcome to The Ticket Office!");
 Console.WriteLine();
 Console.WriteLine("How old are you?");
 
-int userAge = Methods.AskAge();
+int userAge = Methods.GetCustomerAge();
 
 Console.WriteLine();
-Console.WriteLine("What type of ticket would you like to purchase? Standing or seated?");
+Console.WriteLine("What's your place preference? Standing or seated?");
 
-string userPlace = Methods.AskPlace();
+string userPlacePreference = Methods.GetCustomerPlacePreference();
 
 Console.WriteLine();
-Console.WriteLine("Thank you for your answers!");
+Console.WriteLine($"Your place of choice is: {userPlacePreference}");
+await Task.Delay(1000);
+
+Console.WriteLine();
 Console.WriteLine("Searching for an available ticket number...");
 await Task.Delay(1000);
 
-int price = Methods.PriceSetter(userAge, userPlace);
+int price = Methods.PriceSetter(userAge, userPlacePreference);
 decimal tax = Methods.TaxCalculator(price);
 int placeNumber;
 bool checkAvailability;
@@ -57,8 +60,9 @@ Console.WriteLine("Press any key if you want to see the list of places that are 
 Console.ReadKey();
 placeList = Methods.AddPlace(placeList, placeNumber);
 string placeListWithoutLastComma = placeList.Substring(0, placeList.Length -1);
+string placeListWithoutLastFirstComma = placeListWithoutLastComma.Remove(0, 1);
 Console.WriteLine();
-Console.WriteLine($"List of unavailable places: {placeListWithoutLastComma.Remove(0, 1)}");
+Console.WriteLine($"List of unavailable places: {placeListWithoutLastFirstComma}");
 Console.ReadKey();
 
 
