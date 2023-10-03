@@ -11,10 +11,8 @@ namespace Ticket_Office
     {
         //************************************************************************************************************************************************************//
 
-        public static int PriceSetter(int age, string place)
+        public static int PriceSetter(int age, PlaceOptions.CustomerPlacePreference place)
         {
-            bool seated = place.ToLower() == "seated";
-
             int childSeated = 50;
             int childStanding = 25;
             int retiredSeated = 100;
@@ -22,32 +20,33 @@ namespace Ticket_Office
             int restSeated = 170;
             int restStanding = 110;
 
-            if (age <= 11)
+            if (age <= 11 && place == PlaceOptions.CustomerPlacePreference.Seated)
             {
-                switch (seated)
-                {
-                    case true: return childSeated;
-                    case false: return childStanding;
-                }
-
-            }
-            
-            else if (age >= 65)
-            {
-                switch (seated)
-                {
-                    case true: return retiredSeated;
-                    case false: return retiredStanding;
-                }
+                return childSeated;
             }
 
+            else if (age <= 11 && place == PlaceOptions.CustomerPlacePreference.Standing)
+            {
+                return childStanding;
+            }
+
+            else if (age >= 65 && place == PlaceOptions.CustomerPlacePreference.Seated)
+            {
+                return retiredSeated;
+            }
+
+            else if (age >= 65 && place == PlaceOptions.CustomerPlacePreference.Standing)
+            {
+                return retiredStanding;
+            }
+
+            else if (age > 11 && age < 65 && place == PlaceOptions.CustomerPlacePreference.Seated)
+            {
+                return restSeated;
+            }
             else
             {
-                switch (seated)
-                {
-                    case true: return restSeated;
-                    case false: return restStanding;
-                }
+                return restStanding;
             }
         }
 
@@ -114,7 +113,7 @@ namespace Ticket_Office
         //************************************************************************************************************************************************************//
 
 
-        public static string GetCustomerPlacePreference()
+        public static PlaceOptions.CustomerPlacePreference GetCustomerPlacePreference()
         {
             string userPlace;
 
@@ -122,20 +121,22 @@ namespace Ticket_Office
             {
                 userPlace = Console.ReadLine().ToLower();
 
-                if (userPlace != "seated" && userPlace != "standing")
-                {
-                    Console.WriteLine("Please enter a valid answer. Do you want a standing or seated ticket?");
+                if (userPlace != "seated" && userPlace != "standing") 
+                { 
+                    Console.WriteLine("Please enter a valid answer. Do you want a standing or seated ticket?"); 
                 }
-
             }
             while (userPlace != "seated" && userPlace != "standing");
 
-            string userPlaceFirstLetter = userPlace.Remove(1);
-            string userPlaceFirstLetterCapitalized = userPlaceFirstLetter.ToUpper();
-            string userPlaceRest = userPlace.Remove(0, 1);
-            string userPlaceFormatted = userPlaceFirstLetterCapitalized+userPlaceRest;
-
-            return userPlaceFormatted;
+            if (userPlace == "seated")
+            {
+                return PlaceOptions.CustomerPlacePreference.Seated;
+            }
+                    
+            else
+            {
+                return PlaceOptions.CustomerPlacePreference.Standing;
+            }
         }
 
         //************************************************************************************************************************************************************//

@@ -14,17 +14,18 @@ int userAge = Methods.GetCustomerAge();
 Console.WriteLine();
 Console.WriteLine("What's your place preference? Standing or seated?");
 
-string userPlacePreference = Methods.GetCustomerPlacePreference();
+PlaceOptions.CustomerPlacePreference customerPlacePreference;
+customerPlacePreference = Methods.GetCustomerPlacePreference();
 
 Console.WriteLine();
-Console.WriteLine($"Your place of choice is: {userPlacePreference}");
+Console.WriteLine($"Your place of choice is: {customerPlacePreference}");
 await Task.Delay(1000);
 
 Console.WriteLine();
 Console.WriteLine("Searching for an available ticket number...");
 await Task.Delay(1000);
 
-int price = Methods.PriceSetter(userAge, userPlacePreference);
+int price = Methods.PriceSetter(userAge, customerPlacePreference);
 decimal tax = Methods.TaxCalculator(price);
 int placeNumber;
 bool checkAvailability;
