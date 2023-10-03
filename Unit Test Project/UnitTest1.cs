@@ -14,36 +14,56 @@ namespace Unit_Test_Project
         }
 
         [Fact] 
-        public void Test2()
+        public void ChildSeated()
         {
+            Ticket ticket = new Ticket(5, PlaceOptions.CustomerPlacePreference.Seated);
             int expected = 50;
-            int actual = Methods.PriceSetter(9, PlaceOptions.CustomerPlacePreference.Seated);
+            int actual = ticket.Price();
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void Test3()
+        public void ChildStanding()
         {
-            int expected = 110;
-            int actual = Methods.PriceSetter(20, PlaceOptions.CustomerPlacePreference.Standing);
+            Ticket ticket = new Ticket(3, PlaceOptions.CustomerPlacePreference.Standing);
+            int expected = 25;
+            int actual = ticket.Price();
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void Test4()
+        public void RetiredSeated()
         {
-            int expected = 170;
-            int actual = Methods.PriceSetter(50, PlaceOptions.CustomerPlacePreference.Seated);
+            Ticket ticket = new Ticket(80, PlaceOptions.CustomerPlacePreference.Seated);
+            int expected = 100;
+            int actual = ticket.Price();
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void Test5()
+        public void RetiredStanding()
         {
+            Ticket ticket = new Ticket(68, PlaceOptions.CustomerPlacePreference.Standing);
             int expected = 60;
-            int actual = Methods.PriceSetter(111, PlaceOptions.CustomerPlacePreference.Standing);
+            int actual = ticket.Price();
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void RestSeated()
+        {
+            Ticket ticket = new Ticket(36, PlaceOptions.CustomerPlacePreference.Seated);
+            int expected = 170;
+            int actual = ticket.Price();
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void RestStanding()
+        {
+            Ticket ticket = new Ticket(59, PlaceOptions.CustomerPlacePreference.Standing);
+            int expected = 110;
+            int actual = ticket.Price();
+            Assert.Equal(expected, actual);
+        }
     }
 }

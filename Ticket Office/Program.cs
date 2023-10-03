@@ -2,37 +2,42 @@
 
 using Ticket_Office;
 
-
 string placeList = Methods.RandomListGenerator(7500);
 
 Console.WriteLine("Welcome to The Ticket Office!");
 Console.WriteLine();
 Console.WriteLine("How old are you?");
 
-int userAge = Methods.GetCustomerAge();
+int customerAge = Methods.GetCustomerAge();
+
 
 Console.WriteLine();
 Console.WriteLine("What's your place preference? Standing or seated?");
 
-PlaceOptions.CustomerPlacePreference customerPlacePreference;
-customerPlacePreference = Methods.GetCustomerPlacePreference();
+PlaceOptions.CustomerPlacePreference customerPlacePreference = Methods.GetCustomerPlacePreference();
 
 Console.WriteLine();
 Console.WriteLine($"Your place of choice is: {customerPlacePreference}");
 await Task.Delay(1000);
 
 Console.WriteLine();
+Console.WriteLine("Generating ticket...");
+await Task.Delay(1000);
+
+
+
+Console.WriteLine();
 Console.WriteLine("Searching for an available ticket number...");
 await Task.Delay(1000);
 
-int price = Methods.PriceSetter(userAge, customerPlacePreference);
-decimal tax = Methods.TaxCalculator(price);
+Ticket ticket;
 int placeNumber;
 bool checkAvailability;
 
 do
 {
-    placeNumber = Methods.TicketNumberGenerator();
+    ticket = new Ticket(customerAge, customerPlacePreference);
+    placeNumber = ticket.Number;
     checkAvailability = Methods.CheckPlaceAvailability(placeList, placeNumber);
 
     if (checkAvailability == false)
@@ -51,9 +56,11 @@ do
 Console.WriteLine();
 Console.WriteLine("Here are the details of your ticket:");
 Console.WriteLine();
-Console.WriteLine($"Price: \t\t{price} SEK");
-Console.WriteLine($"Taxes: \t\t{tax} SEK");
-Console.WriteLine($"Ticket Number: \t{placeNumber}");
+Console.WriteLine($"Age: \t\t{ticket.Age}");
+Console.WriteLine($"Place: \t\t{ticket.Place}");
+Console.WriteLine($"Price: \t\t{Convert.ToString(ticket.Price())} SEK");
+Console.WriteLine($"Taxes: \t\t{Convert.ToString(ticket.Tax())} SEK");
+Console.WriteLine($"Ticket Number: \t{ticket.Number}");
 Console.WriteLine();
 await Task.Delay(1000);
 

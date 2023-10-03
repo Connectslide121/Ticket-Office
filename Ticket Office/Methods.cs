@@ -11,52 +11,11 @@ namespace Ticket_Office
     {
         //************************************************************************************************************************************************************//
 
-        public static int PriceSetter(int age, PlaceOptions.CustomerPlacePreference place)
-        {
-            int childSeated = 50;
-            int childStanding = 25;
-            int retiredSeated = 100;
-            int retiredStanding = 60;
-            int restSeated = 170;
-            int restStanding = 110;
-
-            if (age <= 11 && place == PlaceOptions.CustomerPlacePreference.Seated)
-            {
-                return childSeated;
-            }
-
-            else if (age <= 11 && place == PlaceOptions.CustomerPlacePreference.Standing)
-            {
-                return childStanding;
-            }
-
-            else if (age >= 65 && place == PlaceOptions.CustomerPlacePreference.Seated)
-            {
-                return retiredSeated;
-            }
-
-            else if (age >= 65 && place == PlaceOptions.CustomerPlacePreference.Standing)
-            {
-                return retiredStanding;
-            }
-
-            else if (age > 11 && age < 65 && place == PlaceOptions.CustomerPlacePreference.Seated)
-            {
-                return restSeated;
-            }
-            else
-            {
-                return restStanding;
-            }
-        }
+      
 
         //************************************************************************************************************************************************************//
 
-        public static decimal TaxCalculator(int price)
-        {
-            decimal tax = (decimal)((1 - 1 / 1.06) * price);
-            return tax; 
-        }
+       
 
         //************************************************************************************************************************************************************//
 
