@@ -11,23 +11,6 @@ namespace Ticket_Office
     {
         //************************************************************************************************************************************************************//
 
-      
-
-        //************************************************************************************************************************************************************//
-
-       
-
-        //************************************************************************************************************************************************************//
-
-
-        public static int TicketNumberGenerator()
-        {
-            Random random = new Random();
-            return random.Next(1, 8001);
-        }
-
-        //************************************************************************************************************************************************************//
-
         public static int GetCustomerAge()
         {
             string userInput;
@@ -71,7 +54,6 @@ namespace Ticket_Office
 
         //************************************************************************************************************************************************************//
 
-
         public static PlaceOptions.CustomerPlacePreference GetCustomerPlacePreference()
         {
             string userPlace;
@@ -100,49 +82,7 @@ namespace Ticket_Office
 
         //************************************************************************************************************************************************************//
 
-        public static bool CheckPlaceAvailability(string placeList, int placeNumber)
-        {
-            string searchPattern = $",{placeNumber},";
 
-            if (placeList.Contains(searchPattern))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        //************************************************************************************************************************************************************//
-
-        public static string AddPlace(string placeList, int placeNumber)
-        {
-            placeList = $"{placeList}{placeNumber.ToString()},"; 
-            return placeList ;
-        }
-
-        //************************************************************************************************************************************************************//
-
-        public static string RandomListGenerator(int howManyNumbers)
-        {
-            string placeList = ",";
-            int randomNumber;
-            bool available;
-
-            for (int i = 0; i < howManyNumbers; i++)
-            {
-                do
-                {
-                    randomNumber = TicketNumberGenerator();
-                    available = CheckPlaceAvailability(placeList, randomNumber);
-                }
-                while (available == false);
-
-                placeList += $"{randomNumber},";
-            }
-            return placeList ;
-        }
 
         //************************************************************************************************************************************************************//
 

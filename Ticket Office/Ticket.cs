@@ -13,14 +13,15 @@ namespace Ticket_Office
         public PlaceOptions.CustomerPlacePreference Place { get; set; }
         public int Number { get; set; }
 
-        
+                        
         public Ticket(int age, PlaceOptions.CustomerPlacePreference place)
         {
             Age = age;
             Place = place;
-            Number = Methods.TicketNumberGenerator();
+            Number = TicketSalesManager.ticketSalesManager.NextTicketNumber();
         }
 
+        //************************************************************************************************************************************************************//
 
         public int Price()
         {
@@ -61,10 +62,15 @@ namespace Ticket_Office
             }
         }
 
+        //************************************************************************************************************************************************************//
+
         public decimal Tax()
         {
             decimal tax = (decimal)((1 - 1 / 1.06) * Price());
             return tax;
         }
+
+        //************************************************************************************************************************************************************//
+
     }
 }
