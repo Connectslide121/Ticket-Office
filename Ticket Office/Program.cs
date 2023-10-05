@@ -3,6 +3,7 @@
 using System;
 using Ticket_Office;
 
+TicketSalesManager.RandomListGenerator(7500);
 
 Console.WriteLine("Welcome to The Ticket Office!");
 Console.WriteLine();
@@ -39,6 +40,11 @@ Console.ReadKey();
 
 Console.WriteLine();
 Console.WriteLine($"Total amount of tickets sold: {Convert.ToString(TicketSalesManager.ticketSalesManager.AmountOfTickets())}");
+Console.WriteLine($"Seated: {Convert.ToString(TicketSalesManager.ticketSalesManager.AmountOfTicketsSeated())}");
+Console.WriteLine($"Standing: {Convert.ToString(TicketSalesManager.ticketSalesManager.AmountOfTicketsStanding())}");
+Console.WriteLine();
+Console.WriteLine($"Total revenue: {Convert.ToString(TicketSalesManager.ticketSalesManager.SalesTotal())} SEK");
+Console.WriteLine($"Total taxes to pay: {Convert.ToString(TicketSalesManager.ticketSalesManager.TaxTotal(TicketSalesManager.ticketSalesManager.SalesTotal()))} SEK");
 
 Console.ReadKey();
 

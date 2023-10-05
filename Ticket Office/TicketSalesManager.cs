@@ -70,12 +70,21 @@ namespace Ticket_Office
         public decimal SalesTotal()
         {
             decimal total = 0;
-
+            
             foreach (Ticket item in tickets) 
             {
-                total += Convert.ToDecimal(item.Price);
+                total += Convert.ToDecimal(item.Price());
             }
             return total;
+        }
+
+        //************************************************************************************************************************************************************//
+
+        public decimal TaxTotal(decimal revenue)
+        {
+            decimal multiplier = 1 - 1 / 1.06m;
+            decimal tax = Decimal.Multiply(multiplier, revenue);
+            return tax;
         }
 
         //************************************************************************************************************************************************************//
@@ -86,6 +95,49 @@ namespace Ticket_Office
         }
 
         //************************************************************************************************************************************************************//
+
+        public int AmountOfTicketsSeated()
+        {
+            return tickets.Count(ticket => ticket.Place == PlaceOptions.CustomerPlacePreference.Seated);
+        }
+
+        //************************************************************************************************************************************************************//
+
+        public int AmountOfTicketsStanding()
+        {
+            return tickets.Count(ticket => ticket.Place == PlaceOptions.CustomerPlacePreference.Standing);
+        }
+
+        //************************************************************************************************************************************************************//
+
+        public static void RandomListGenerator(int howManyTickets)
+        {
+            for (int i = 0; i < howManyTickets; i++)
+            {
+                Random randomAge = new Random();
+                int age = randomAge.Next(1, 106);
+
+
+                PlaceOptions.CustomerPlacePreference place;
+                Random randomPlace = new Random();
+                int randomPlaceDefiner = randomPlace.Next(1, 3);
+                if (randomPlaceDefiner == 1)
+                {
+                    place = PlaceOptions.CustomerPlacePreference.Seated;
+                }
+                else
+                {
+                    place = PlaceOptions.CustomerPlacePreference.Standing;
+                }
+
+
+                Ticket ticket = new Ticket(age, place);
+                ticketSalesManager.tickets.Add(ticket);
+            }
+        }
+
+        //************************************************************************************************************************************************************//
+
 
 
 

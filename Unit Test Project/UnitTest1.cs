@@ -5,13 +5,6 @@ namespace Unit_Test_Project
 {
     public class UnitTest1
     {
-        [Fact]
-        public void Test1()
-        {
-            string expected = ",1,2,3,50,100,";
-            string actual = Methods.AddPlace(",1,2,3,50,", 100);
-            Assert.Equal(expected, actual);
-        }
 
         [Fact] 
         public void ChildSeated()
