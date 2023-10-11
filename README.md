@@ -5,3 +5,4 @@ Lexicon - .NET course - Week 3, 4 & 5 assignment
 
 Week 3: Exercise to practice with conditional paths and code flow
 Week 4: Exercise to refactor program using enums and objects
+Week 5: Exercise to practice with LINQ
